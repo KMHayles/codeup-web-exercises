@@ -9,11 +9,15 @@
 * > sayHello("codeup") // returns "Hello, codeup!"
 */
 
-console.log(sayHello("codeup"));
-function sayHello(name){
-    let message = "Hello, " + name + "!";
-    return message;
-}
+// console.log(sayHello("codeup"));
+// function sayHello(name){
+//     let message = "Hello, " + name + "!";
+//     let message = `Hello, ${name}!` template literal
+//     return message;
+// }
+
+
+
 
 /**
  * TODO:
@@ -23,8 +27,8 @@ function sayHello(name){
  * console.log 'helloMessage' to check your work
  */
 
-let  helloMessage = sayHello("Kenneth");
-console.log(helloMessage);
+// let  helloMessage = sayHello("Kenneth");
+// console.log(helloMessage);
 
 /**
  * TODO:
@@ -33,9 +37,9 @@ console.log(helloMessage);
  * console.
  */
 
-let myName = "Larry";
-let helloMessage2 = sayHello(myName);
-console.log(helloMessage2);
+// let myName = "Larry";
+// let helloMessage2 = sayHello(myName);
+// console.log(helloMessage2);
 
 /**
  * TODO:
@@ -55,13 +59,13 @@ console.log(helloMessage2);
  * number)
  */
 
-let random = Math.floor((Math.random()*3)+1);
-console.log("Random number is: " + random.toString());
-function isTwo(number) {
-    (number % 2 === 1) ? console.log("Number was odd.") : console.log("Number was even.");
-    return number;
-}
-isTwo(random);
+// let random = Math.floor((Math.random()*3)+1);
+// console.log("Random number is: " + random.toString());
+// function isTwo(number) {
+//     (number % 2 === 1) ? console.log("Number was odd.") : console.log("Number was even.");
+//     return number;
+// }
+// isTwo(random);
 
 /**
  * TODO:
@@ -82,19 +86,34 @@ isTwo(random);
  * then display the dollar amount they should tip
  */
 
-let userBillTotal = prompt('How much was your bill?');
-//console.log('total bill: ' + userBillTotal);
-let userBillTip = prompt ('What would you like to tip?');
-//console.log('tip: ' + userBillTotal.toString() * userBillTip.toString());
-let tip = userBillTotal * userBillTip;
-parseFloat('tip');
-alert('Thank you for the $' + tip + " tip!");
+// const userBill = prompt("What is your bill?");
+// const userTip = prompt("what tip would you like to leave?");
+//
+// const coversionOfBill = parseInt(userBill); // string => number
+// const coversionOfTip = parseInt(userTip);
+//
+// function calculateTip(userBillTotal, userBillTip){
+//     let coversionOfTipToDecimal = userBillTip / 100; // 0.20, 0.30
+//     let total = coversionOfTipToDecimal * userBillTotal
+//     return total;
+// }
+// const gratuity = calculateTip(coversionOfBill, coversionOfTip); // these are the arguments
+// console.log(gratuity); // what ever we return in the function
 
-function calculateTip(userBillTotal, userBillTip){
-    let total = (userBillTotal * userBillTip);
-    return total;
-}
-calculateTip("tip");
+
+// let userBillTotal = prompt('How much was your bill?');
+// console.log('total bill: ' + userBillTotal);
+// let userBillTip = prompt ('What would you like to tip?');
+// console.log('tip: ' + userBillTotal.toString() * userBillTip.toString());
+// let tip = userBillTotal * userBillTip;
+// parseFloat('tip');
+// alert('Thank you for the $' + tip + " tip!");
+//
+// function calculateTip(userBillTotal, userBillTip){
+//     let total = (userBillTotal * userBillTip);
+//     return total;
+// }
+// calculateTip("tip");
 
 // function calculateTip(total, tip){
 //  console.log("Running calculateTip()");
@@ -129,10 +148,11 @@ calculateTip("tip");
 
 function applyDiscount(){
     let price = 100;
-        console.log(price);
+    console.log("This was the price " + price);
     let discount = .2;
-        console.log(discount);
+    console.log("This was the discount applied " + discount);
     let total = (price * discount);
-        console.log(total);
+    console.log("This was the total amount " + total);
+    return(total);
 }
 applyDiscount();
