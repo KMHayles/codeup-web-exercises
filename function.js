@@ -146,13 +146,25 @@
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
 
-function applyDiscount(){
-    let price = 100;
-    console.log("This was the price " + price);
-    let discount = .2;
-    console.log("This was the discount applied " + discount);
-    let total = (price * discount);
-    console.log("This was the total amount " + total);
-    return(total);
+// let price = 100
+// let discount= .2
+//
+// function applyDiscount(){
+//     let totalBill = price * discount;
+//     console.log('The total bill is $' + totalBill)
+//     return totalBill
+// }
+// applyDiscount();
+
+let work = myFunction();
+
+function myFunction(work){
+    let theAmountOfWork = time * days;
+    console.log("How much time a week I work" + theAmountOfWork)
+    let days = 7
+    console.log("Amount of days I work " + days)
+    let time = 8
+    console.log("Amount of hours I work" + time)
+    return totalWork
 }
-applyDiscount();
+myFunction('totalWork');
