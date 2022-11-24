@@ -21,11 +21,11 @@
  */
 let analyzeColor= prompt("What is your favorite color?");
 if (analyzeColor == "Blue"){
-    console.log("The Sky is blue");
+    console.log("Blue is my favorite, and the sky is blue too!");
 } else if (analyzeColor == "Red") {
-    console.log("Red is for Roses");
+    console.log("Red is an amazing color on cars!");
 } else {
-    alert("This color sucks")
+    alert("This isn't my favorite color....sorry (not sorry).")
 }
 
 // Don't change the next two lines!
