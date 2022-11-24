@@ -19,23 +19,20 @@
  * Test your function by passing various string literals to it and
  * console.logging the function's return value
  */
-
-// let input1 = 'blue';
-// let input2 = 'red';
-// function analyzeColor (input){
-//     if (analyzeColor.toLowerCase()(input1, input2)){
-//         console.log(input + " is the color of the sky");
-//     } else if (analyzeColor(input)) {
-//         console.log(input1 + " is also a color I like");
+// function analyzeColor(input) {
+//     let result;
+//     if (input == "blue"){
+//         console.log('The sky is also blue');
+//     } else if (input == "red"){
+//         console.log('That is the color of roses!');
 //     } else {
-//         console.log("Well that color is terrible");
+//         result = 'That color sucks!';
 //     }
-//     return
+//     return result;
 // }
+//
 // analyzeColor('blue');
 // analyzeColor('red');
-// analyzeColor('cyan');
-
 
 // let analyzeColor= prompt("What is your favorite color?");
 // if (analyzeColor == "Blue"){
