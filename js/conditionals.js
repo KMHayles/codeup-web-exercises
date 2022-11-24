@@ -19,22 +19,40 @@
  * Test your function by passing various string literals to it and
  * console.logging the function's return value
  */
-let analyzeColor= prompt("What is your favorite color?");
-if (analyzeColor == "Blue"){
-    console.log("Blue is my favorite, and the sky is blue too!");
-} else if (analyzeColor == "Red") {
-    console.log("Red is an amazing color on cars!");
-} else {
-    alert("This isn't my favorite color....sorry (not sorry).")
-}
+
+// let input1 = 'blue';
+// let input2 = 'red';
+// function analyzeColor (input){
+//     if (analyzeColor.toLowerCase()(input1, input2)){
+//         console.log(input + " is the color of the sky");
+//     } else if (analyzeColor(input)) {
+//         console.log(input1 + " is also a color I like");
+//     } else {
+//         console.log("Well that color is terrible");
+//     }
+//     return
+// }
+// analyzeColor('blue');
+// analyzeColor('red');
+// analyzeColor('cyan');
+
+
+// let analyzeColor= prompt("What is your favorite color?");
+// if (analyzeColor == "Blue"){
+//     console.log("Blue is my favorite, and the sky is blue too!");
+// } else if (analyzeColor == "Red") {
+//     console.log("Red is an amazing color on cars!");
+// } else {
+//     alert("That color is lame....sorry (not sorry).")
+// }
 
 // Don't change the next two lines!
 // These lines create two variables for you:
 // - `colors`: a list of the colors of the rainbow
 // - `randomColor`: contains a single random color value from the list (this
 //                  will contain a different color every time the page loads)
-//var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-//var randomColor = colors[Math.floor(Math.random() * colors.length)];
+// var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+// var randomColor = colors[Math.floor(Math.random() * colors.length)];
 /**
  * TODO:
  * Pass the `randomColor` variable to your 'analyzeColor' function and console.log the results.
