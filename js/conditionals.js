@@ -35,14 +35,14 @@
 // analyzeColor('blue');
 // analyzeColor('red');
 
-// let analyzeColor= prompt("What is your favorite color?");
-// if (analyzeColor == "Blue"){
-//     console.log("Blue is my favorite, and the sky is blue too!");
-// } else if (analyzeColor == "Red") {
-//     console.log("Red is an amazing color on cars!");
-// } else {
-//     alert("That color is lame....sorry (not sorry).")
-// }
+let analyzeColor = prompt("What is your favorite color?");
+if (analyzeColor.toLowerCase() == "Blue"){
+    console.log("Blue is my favorite, and the sky is blue too!");
+} else if (analyzeColor.toLowerCase() == "Red") {
+    console.log("Red is an amazing color on cars!");
+} else {
+    alert("That color is lame....sorry (not sorry).")
+}
 
 // Don't change the next two lines!
 // These lines create two variables for you:
