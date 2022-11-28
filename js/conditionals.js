@@ -19,6 +19,7 @@
  * Test your function by passing various string literals to it and
  * console.logging the function's return value
  */
+
 // function analyzeColor(input) {
 //     let result;
 //     if (input == "blue"){
