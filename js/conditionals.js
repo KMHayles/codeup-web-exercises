@@ -1,4 +1,4 @@
-'use strict'
+"use strict"
 
 /**
  * TODO:
@@ -19,6 +19,20 @@
  * Test your function by passing various string literals to it and
  * console.logging the function's return value
  */
+
+// function analyzeColor(color){
+//     let colorLower = color.toLowerCase();
+//     if(colorLower === 'blue'){
+//         return 'Blue is the color of the sky';
+//     } else if(colorLower === 'red'){
+//         return 'Stop signs are red';
+//     } else {
+//         return 'That color is not very nice';
+//     }
+// }
+// let result = analyzeColor('red');
+// console.log(result);
+
 
 // let userColor = prompt("What is your favorite color?");
 // if (userColor === "blue"){
@@ -73,6 +87,9 @@
  * You should see a different message every time you refresh the page
  */
 
+// let result2 = analyzeColor(randomColor);
+// console.log(result2);
+
 // let result3 = analyzeColor(randomColor);
 // console.log(result3);
 
@@ -92,7 +109,7 @@
 //             return "Red is an amazing color on cars!"
 //             break;
 //         case 'orange':
-//             return "Oranges are 'orange'..get it"
+//             return "Oranges are 'orange'.get it"
 //             break;
 //         case 'yellow':
 //             return "My cup stays on yellow"
@@ -111,7 +128,7 @@
 //             break;
 //     }
 // }
-
+//
 // let userColor = prompt("what is your favorite color?");
 // let result2 = analyzeColor(userColor);
 // console.log(result2);
@@ -150,6 +167,68 @@
  * return value.
  */
 
+// function calculateTotal(luckyNumber, total) {
+//     let discount,
+//         discountedPrice;
+//     switch (luckyNumber) {
+//         case 0:
+//             discount = 0;
+//             break;
+//         case 1:
+//             discount = 0.1;
+//             break;
+//         case 2:
+//             discount = 0.25;
+//             break;
+//         case 3:
+//             discount = 0.35;
+//             break;
+//         case 4:
+//             discount = 0.50;
+//             break;
+//         case 5:
+//             discount = 1;
+//             break;
+//         default:
+//             return 'Incorrect lucky number provided';
+//             break;
+//     }
+//
+//     if (!isNaN(total)) {
+//         discountedPrice = (total *(1 - discount));
+//     } else {
+//         return 'The total provided is not a number'
+//     }
+//     return discountedPrice.toFixed(2);
+// }
+// let discount = calculateTotal(4, 100);
+// console.log(discount);
+
+//my example
+// let totalAmount
+// function calculateTotal(){
+//     let luckyNumber = discount;
+//     if (luckyNumber === '0'){
+//         return 'Sorry no discount';
+//     } else if (luckyNumber === '1') {
+//         return 'Your discount is 10%';
+//     } else if (luckyNumber === '2') {
+//         return 'Your discount is 25%';
+//     } else if (luckyNumber === '3') {
+//         return 'Your discount is 35%';
+//     } else if (luckyNumber === '4') {
+//         return 'Your discount is 50%';
+//     } else {
+//         return "OMG everything is free!"
+//     }
+// }
+//
+// Math.floor(Math.random()*6)
+//
+// // let customerDiscount = prompt("Pick a number 0-5");
+// let result = calculateTotal();
+// // console.log(result);
+
 /**
  * TODO:
  * Uncomment the line below to generate a random number between 0 and 5.
@@ -158,8 +237,16 @@
  * and alerts to display to the user what their lucky number was, what their
  * price before the discount was, and what their price after the discount is.
  */
+
 // Generate a random number between 0 and 6
-// var luckyNumber = Math.floor(Math.random() * 6);
+
+// let luckyNumber = Math.floor(Math.random() * 6);
+// let userNumberPrompt = prompt('What was the total of your bill?');
+// let userResult2 = calculateTotal(luckyNumber, userNumberPrompt);
+// alert(`your lucky number was ${luckyNumber}.
+// The price before the discount was $${userNumberPrompt}.
+// The price after the discount was $${userResult2}`);
+
 
 /**
  * TODO:
@@ -180,11 +267,38 @@
  * HINT: The way we prompt for a value could be improved
  */
 
-// confirm('Would you like to enter a number?')
-// prompt("What number would you like to enter?")
-// alert('Is the number odd or even?')
-// alert('What is the number plus 100?')
-// alert('Is the number a negative or positive?')
-// alert('Error....this is not a correct input type'
-//
-// )
+let userConfirm = confirm('Would you like to enter a number?');
+let userNumber;
+if (userConfirm){
+    userNumber = prompt("What number would you like to enter?");
+    if ( !isNaN(userNumber)) {
+
+        if (isEven(userNumber) ) {
+            alert('The number is even');
+        } else {
+            alert('The number is odd');
+        }
+        alert('The number plus 100 equals: ' + add100(userNumber));
+
+        if (isPositive(userNumber) ) {
+            alert('The number is positive');
+        } else {
+            alert('The number is negative');
+        }
+
+    } else {
+        alert('Incorrect data type provided.');
+    }
+}
+
+function isEven(number){
+    return number % 2 === 0;
+}
+
+function add100(number){
+    return parseFloat(number) + 100;
+}
+
+function isPositive(number){
+    return number > 0;
+}
