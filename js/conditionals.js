@@ -20,47 +20,102 @@
  * console.logging the function's return value
  */
 
-// function analyzeColor(input) {
-//     let result;
-//     if (input == "blue"){
-//         console.log('The sky is also blue');
-//     } else if (input == "red"){
-//         console.log('That is the color of roses!');
-//     } else {
-//         result = 'That color sucks!';
-//     }
-//     return result;
+// let userColor = prompt("What is your favorite color?");
+// if (userColor === "blue"){
+//     console.log("Blue is my favorite, and the sky is blue too!");
+// } else if (userColor === "red") {
+//     console.log("Red is an amazing color on cars!");
+// } else {
+//     console.log("That color is lame....sorry (not sorry).")
 // }
-//
-// analyzeColor('blue');
-// analyzeColor('red');
 
-let analyzeColor = prompt("What is your favorite color?");
-if (analyzeColor.toLowerCase() == "Blue"){
-    console.log("Blue is my favorite, and the sky is blue too!");
-} else if (analyzeColor.toLowerCase() == "Red") {
-    console.log("Red is an amazing color on cars!");
-} else {
-    alert("That color is lame....sorry (not sorry).")
-}
+// function analyzeColor(color){
+//     let colorTo = color.toLowerCase();
+//     if (colorTo === "blue"){
+//         return 'Blue is my favorite, and the sky is blue too!';
+//     } else if (colorTo === "red") {
+//         return "Red is an amazing color on cars!";
+//     } else if (colorTo === "orange") {
+//         return "Oranges are 'orange'..get it";
+//     } else if (colorTo === "yellow") {
+//         return "My cup stays on yellow";
+//     } else if (colorTo === "green") {
+//         return "Money is green";
+//     } else if (colorTo === "indigo") {
+//         return "Indigo is a nice color";
+//     } else if (colorTo === "violet") {
+//         return "Violet is a beautiful color";
+//     } else {
+//         return "That color is lame....sorry (not sorry)."
+//     }
+// }
+
+// let result = analyzeColor("blue")
+// console.log(result);
+
+// let userColor = prompt("what is your favorite color?");
+// let result2 = analyzeColor(userColor);
+// console.log(result2);
+
 
 // Don't change the next two lines!
 // These lines create two variables for you:
 // - `colors`: a list of the colors of the rainbow
 // - `randomColor`: contains a single random color value from the list (this
 //                  will contain a different color every time the page loads)
-// var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-// var randomColor = colors[Math.floor(Math.random() * colors.length)];
+// let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+// let randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+
 /**
  * TODO:
  * Pass the `randomColor` variable to your 'analyzeColor' function and console.log the results.
  * You should see a different message every time you refresh the page
  */
 
+// let result3 = analyzeColor(randomColor);
+// console.log(result3);
+
+
 /**
  * TODO:
  * Comment out the code above, and refactor your function to use a switch-case statement
  */
+
+// function analyzeColor(color){
+//     let colorTo = color.toLowerCase();
+//     switch(colorTo) {
+//         case 'blue':
+//             return "Blue is my favorite color!"
+//             break;
+//         case 'red':
+//             return "Red is an amazing color on cars!"
+//             break;
+//         case 'orange':
+//             return "Oranges are 'orange'..get it"
+//             break;
+//         case 'yellow':
+//             return "My cup stays on yellow"
+//             break;
+//         case 'green':
+//             return "Money is green"
+//             break;
+//         case 'indigo':
+//             return "Indigo is a nice color"
+//             break;
+//         case 'violet':
+//             return "Violet is a beautiful color"
+//             break;
+//         default:
+//             return "That color is lame....sorry (not sorry)"
+//             break;
+//     }
+// }
+
+// let userColor = prompt("what is your favorite color?");
+// let result2 = analyzeColor(userColor);
+// console.log(result2);
+
 
 /**
  * TODO:
@@ -68,6 +123,10 @@ if (analyzeColor.toLowerCase() == "Blue"){
  * user to your `analyzeColor` function. Alert the return value from your
  * function to show it to the user.
  */
+
+// let userColor2 = prompt("what is your favorite color?");
+// let result3 = analyzeColor(userColor2);
+// alert(result3);
 
 /* ########################################################################## */
 
@@ -120,3 +179,12 @@ if (analyzeColor.toLowerCase() == "Blue"){
  * Can you refactor your code to use functions?
  * HINT: The way we prompt for a value could be improved
  */
+
+// confirm('Would you like to enter a number?')
+// prompt("What number would you like to enter?")
+// alert('Is the number odd or even?')
+// alert('What is the number plus 100?')
+// alert('Is the number a negative or positive?')
+// alert('Error....this is not a correct input type'
+//
+// )
