@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 //Q2
 
@@ -87,4 +87,4 @@
 // jason Q5 example
 // for( let i = 100; i >= 5; i -= 5){ // which is (i = i -5)
 //     console.log(i)
-}
+// }
