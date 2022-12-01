@@ -32,7 +32,7 @@
 // }
 
 
-//Jason example Q3
+// Jason example Q3
 // for (let i = 0; i < 10; i++){
 //     let randomNum = getRandomNum(20, 200);
 //     let isEven = randomNum % 2 === 0;

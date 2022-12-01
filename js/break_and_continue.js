@@ -53,7 +53,7 @@
 // }
 
 
-//jason Q3 continue
+// jason Q3 continue
 // while(true){
 //     let userNum = prompt("Enter an Odd number between 1 and 50"); //could wrap prompt in parseFloat
 //     userNum = parseFloat(userNum);
@@ -69,7 +69,7 @@
 //     }
 // }
 
-//jason Q3 continue with message "yikes"
+// jason Q3 continue with message "yikes"
 // while(true){
 //     let userNum = prompt("Enter an Odd number between 1 and 50"); //could wrap prompt in parseFloat
 //     userNum = parseFloat(userNum);
