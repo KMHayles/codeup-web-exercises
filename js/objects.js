@@ -112,13 +112,13 @@
         {firstName: 'Zach', lastName: 'Taylor'},
     ];
 
-    shoppers.forEach(function(shoppers) {
-        if(shoppers.amount > 200){
-            console.log(`${shoppers.name} spent $${shoppers.amount} and received a $${shoppers.amount * .12} discount, their total price is now $${shoppers.amount - shoppers.amount *.12}`);
-        } else {
-            console.log(`I'm sorry ${shoppers.name} you don't qualify for this discount...thank you for shopping at HEB`);
-        }
-    })
+    // shoppers.forEach(function(shoppers) {
+    //     if(shoppers.amount > 200){
+    //         console.log(`${shoppers.name} spent $${shoppers.amount} and received a $${shoppers.amount * .12} discount, their total price is now $${shoppers.amount - shoppers.amount *.12}`);
+    //     } else {
+    //         console.log(`I'm sorry ${shoppers.name} you don't qualify for this discount...thank you for shopping at HEB`);
+    //     }
+    // })
 
     /**
      * TODO:
