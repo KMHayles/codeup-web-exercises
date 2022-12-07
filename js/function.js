@@ -12,7 +12,7 @@
 // console.log(sayHello("codeup"));
 // function sayHello(name){
 //     let message = "Hello, " + name + "!";
-//     let message = `Hello, ${name}!` template literal
+//     //let message = `Hello, ${name}!` template literal
 //     return message;
 // }
 
@@ -156,15 +156,15 @@
 // }
 // applyDiscount();
 
-let work = myFunction();
-
-function myFunction(work){
-    let theAmountOfWork = time * days;
-    console.log("How much time a week I work" + theAmountOfWork)
-    let days = 7
-    console.log("Amount of days I work " + days)
-    let time = 8
-    console.log("Amount of hours I work" + time)
-    return totalWork
-}
-myFunction('totalWork');
+// let work = myFunction();
+//
+// function myFunction(work){
+//     let theAmountOfWork = time * days;
+//     console.log("How much time a week I work" + theAmountOfWork)
+//     let days = 7
+//     console.log("Amount of days I work " + days)
+//     let time = 8
+//     console.log("Amount of hours I work" + time)
+//     return totalWork
+// }
+// myFunction('totalWork');
