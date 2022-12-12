@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register With Us</title>
+</head>
+<body>
+    <form method="POST" action="https://request-inspector.glitch.me/">
+
+      <label for="e-mail">E-mail</label>
+      <input id="e-mail" name="e-mail" placeholder="E-mail"  type="text">
+      <br>
+
+      <label for="password">Password</label>
+      <input id="password" name="password" placeholder="Password" type="password">
+
+    <br>
+    <br>
+
+    <fieldset>
+        <legend>Bio</legend>
+            <textarea name="bios" rows="4" cols="50" placeholder="Write a short description about yourself"></textarea>
+    </fieldset>
+
+    <br>
+
+    <fieldset>
+        <legend>How did you hear about us?</legend>
+            <input id="a" type="radio" name="questioner" value="a">
+            <label for="a">billboard</label>
+            <br>
+            <input id="b" type="radio" name="questioner" value="b">
+            <label for="b">radio advertisement</label>
+            <br>
+            <input id="c" type="radio" name="questioner" value="c">
+            <label for="c">internet advertisement</label>
+            <br>
+            <input id="d" type="radio" name="questioner" value="d">
+            <label for="d">other</label>
+    </fieldset>
+
+    <br>
+    <br>
+
+    What web browser are you currently using?
+    <select name="Web browers use">
+        <option value="chrome">Chrome</option>
+        <option value="firefox">Firefox</option>
+        <option value="safari">Safari</option>
+        <option value="internet explorer">Internet Explorer</option>
+    </select>
+
+    <br>
+    <br>
+
+    <input type="submit">
+
+    </form>
+</body>
+</html>
+
+
+<!--Make sure all of your form elements have labels.-->
+<!--Ensure that all of your form values are being submitted to the Request Inspector.-->
+<!--Experiment with different attribute values:-->
+<!--What do you notice when changing the form's request method from GET to POST?-->
+<!--What happens if you leave off the name attribute on an input?-->
+<!--What happens if you leave off the id attribute on a form input?-->
+<!--Finally, commit the changes to your git repository, and push to GitHub.-->
+
