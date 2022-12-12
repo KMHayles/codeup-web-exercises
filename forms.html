@@ -5,66 +5,60 @@
     <title>Register With Us</title>
 </head>
 <body>
-    <form method="POST" action="https://request-inspector.glitch.me/">
+    <h1>Register With Us</h1>
+    <main>
+        <form method="POST" action="https://request-inspector.glitch.me/">
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="e-mail" placeholder="Enter Email"  type="email">
+        </div>
 
-      <label for="e-mail">E-mail</label>
-      <input id="e-mail" name="e-mail" placeholder="E-mail"  type="text">
-      <br>
+        <div>
+          <label for="password">Password</label>
+          <input id="password" name="password" placeholder="Password" type="password">
+        </div>
+        <br>
+        <br>
 
-      <label for="password">Password</label>
-      <input id="password" name="password" placeholder="Password" type="password">
+        <fieldset>
+            <legend>Bio</legend>
+                <textarea name="bio" id="bio" cols="50" placeholder="Write a short description about yourself"></textarea>
+        </fieldset>
 
-    <br>
-    <br>
+        <br>
 
-    <fieldset>
-        <legend>Bio</legend>
-            <textarea name="bios" rows="4" cols="50" placeholder="Write a short description about yourself"></textarea>
-    </fieldset>
+        <fieldset>
+            <legend>How did you hear about us?</legend>
+                <input id="billboard" type="radio" name="questioner" value="billboard">
+                <label for="billboard">Billboard</label>
+                <br>
+                <input id="radio advertisement" type="radio" name="questioner" value="radio ad">
+                <label for="radio advertisement">Radio advertisement</label>
+                <br>
+                <input id="internet advertisement" type="radio" name="questioner" value="internet ad">
+                <label for="internet advertisement">Internet advertisement</label>
+                <br>
+                <input id="other" type="radio" name="questioner" value="other">
+                <label for="other">Other</label>
+        </fieldset>
 
-    <br>
+        <br>
+        <br>
 
-    <fieldset>
-        <legend>How did you hear about us?</legend>
-            <input id="a" type="radio" name="questioner" value="a">
-            <label for="a">billboard</label>
-            <br>
-            <input id="b" type="radio" name="questioner" value="b">
-            <label for="b">radio advertisement</label>
-            <br>
-            <input id="c" type="radio" name="questioner" value="c">
-            <label for="c">internet advertisement</label>
-            <br>
-            <input id="d" type="radio" name="questioner" value="d">
-            <label for="d">other</label>
-    </fieldset>
+        <label for="browser">What web browser are you use?</label>
+        <select name="Web browsers use" id="browser">
+            <option value="chrome">Chrome</option>
+            <option value="firefox">Firefox</option>
+            <option value="safari">Safari</option>
+            <option value="internet explorer">Internet Explorer</option>
+        </select>
 
-    <br>
-    <br>
+        <br>
+        <br>
 
-    What web browser are you currently using?
-    <select name="Web browers use">
-        <option value="chrome">Chrome</option>
-        <option value="firefox">Firefox</option>
-        <option value="safari">Safari</option>
-        <option value="internet explorer">Internet Explorer</option>
-    </select>
+        <input type="submit">
 
-    <br>
-    <br>
-
-    <input type="submit">
-
-    </form>
+        </form>
+    </main>
 </body>
 </html>
-
-
-<!--Make sure all of your form elements have labels.-->
-<!--Ensure that all of your form values are being submitted to the Request Inspector.-->
-<!--Experiment with different attribute values:-->
-<!--What do you notice when changing the form's request method from GET to POST?-->
-<!--What happens if you leave off the name attribute on an input?-->
-<!--What happens if you leave off the id attribute on a form input?-->
-<!--Finally, commit the changes to your git repository, and push to GitHub.-->
-
