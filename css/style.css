@@ -1,3 +1,38 @@
+h1.container-welcome {
+    margin: auto;
+    width: 50%;
+}
+
+h1, h2 {
+    color: midnightblue;
+    text-decoration: underline;
+}
+
+
+body {
+    background-color: azure;
+    background-image: url("../photos/Corvette-C6-Z06-Engine-LS7.jpeg");
+    background-size: cover;
+    font-family: Avenir;
+}
+
+.features-prices{
+    padding: 10px;
+    font-size: large;
+}
+
+
+.ending-statement {
+    background-color: white;
+}
+
+h3.fancy-anchor:hover {
+    transition-delay: .5s;
+    transform: scale(2,.5);
+    width: 240px;
+    background-color: red;
+}
+
 /*h1 {*/
 /*    color: purple;*/
 /*    font-family: Arial;*/
