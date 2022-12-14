@@ -31,7 +31,7 @@ fieldset {
 
 .width-80 {
     width: 80%;
-    position: center;
+    margin: auto;
     /* The element with this class should be 80% of the width and it must be centered */
     /* Read how to center elements with margin here: http://learnlayout.com/margin-auto.html*/
 }
@@ -55,7 +55,7 @@ fieldset {
 
 .btn {
     padding: 8px;
-    border: 2px solid lightgray;
+    border: 1px solid lightgray;
     font-weight: bold;
     color: white;
     background-color: #0fb784;
@@ -64,13 +64,9 @@ fieldset {
     /* The border of this element should be 1px, and its color should be light grey */
 }
 
-
-
 .form-control {
-    padding-top: 4px;
-    padding-bottom: 4px;
-    margin-bottom: .5em;
-    margin-top: .5em;
+    padding: 4px 0;
+    margin: .5em 0;
 
 
     /* There must be 4px on top of the text and below the text of an input with this class */
