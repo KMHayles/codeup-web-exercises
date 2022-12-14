@@ -254,9 +254,4 @@
     console.log(books2);
 
 
-    // function showBookInfo(book) {
-    //
-    // }
-
-
 })();
