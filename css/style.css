@@ -13,7 +13,7 @@ body {
     background-color: azure;
     background-image: url("../photos/Corvette-C6-Z06-Engine-LS7.jpeg");
     background-size: cover;
-    font-family: Avenir;
+    font-family: Avenir, sans-serif;
 }
 
 .features-prices{

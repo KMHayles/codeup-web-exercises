@@ -1,7 +1,7 @@
-"use strict";
-
-//Q2
-
+// "use strict";
+//
+// Q2
+//
 // function showMultiplicationTable(){
 //     let number = 5
 //     for(let i = 1;i <= 10; i++){
@@ -10,8 +10,8 @@
 //     }
 // }
 // showMultiplicationTable()
-
-//Jason example
+//
+// Jason example
 // function showMultiplicationTable(num){
 //     for(let i = 1; i <= 10; i++){          i++/i = i+1
 //         let answer = num * i;
@@ -20,8 +20,8 @@
 // }
 //
 // showMultiplicationTable(7)
-
-//Q3
+//
+// Q3
 // for(let i = 0; i<=10; i++){
 //     let randoNum = Math.floor((Math.random() * (200 - 20 + 1)) + 1);
 //     console.log(i,randoNum);
