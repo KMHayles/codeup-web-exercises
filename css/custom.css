@@ -1,0 +1,51 @@
+.container-fluid {
+    background-color: #FFFFFF;
+}
+
+.navbar-brand {
+    display: flex;
+    justify-content: center;
+}
+
+.jumbotron {
+    background-image: url('../photos/pizza.png');
+    background-size: cover;
+    background-position: center;
+    height: 346px;
+    width: 100%;
+}
+
+.p-3 {
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+    opacity: 0.6;
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 36%;
+    font-weight: 700;
+}
+
+.d-inline-flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 30rem;
+}
+
+.btn-outline-success {
+    width: 100%;
+    border-radius: 3px;
+    background-color: white;
+    color: #5592FF;
+    border: 2px solid #5592FF;
+}
+
+.nav-link.signup {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+
