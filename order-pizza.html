@@ -10,61 +10,165 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Pizza World</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Order Online</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Menu</a>
-          </li>
-          <li class="nav-item">
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Zip Code" aria-label="Zip Code">
-              <button class="btn btn-outline-success" type="submit">Search stores near you!</button>
-            </form>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="d-flex p-2 flex-grow-1 justify-content-end">
-      <i class="bi bi-person-fill"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-      </svg></i>
-      <p>Sign Up!</p>
-    </div>
-  </nav>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Pizza World</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto w-100">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#">Order Online</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Zip Code" aria-label="Zip Code">
+                            <button class="btn btn-outline-success" type="submit">Search stores near you!</button>
+                        </form>
+                    </li>
+                </ul>
+                <div class="d-inline-flex p-2 flex-grow-1 justify-content-end">
+                    <i class="bi bi-person-fill"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                      <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                    </svg>Sign Up!</i>
+                </div>
+            </div>
+        </div>
+    </nav>
   <div class="container-lg">
       <div class="jumbotron">
-        <div class="p-3 mb-2 bg-light text-dark">Welcome to Pizza World!
-        </div>
+          <div class="p-3 mb-2 bg-light text-dark">Welcome to Pizza World!
+          </div>
       </div>
   </div>
   <h2 class="container">Build Your Own Pizza!
   </h2>
   <div class="container">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="Size and Crust-tab" data-bs-toggle="tab" data-bs-target="#Size and Crust" type="button" role="tab" aria-controls="Size and Crust" aria-selected="true"><span class="badge rounded-pill bg-secondary">1</span>Size and Crust</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="Cheese and Sauce-tab" data-bs-toggle="tab" data-bs-target="#Cheese and Sauce" type="button" role="tab" aria-controls="Cheese and Sauce" aria-selected="false"><span class="badge rounded-pill bg-secondary">2</span>Cheese and Sauce</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="Toppings-tab" data-bs-toggle="tab" data-bs-target="#Toppings" type="button" role="tab" aria-controls="Toppings" aria-selected="false"><span class="badge rounded-pill bg-secondary">3</span>Toppings</button>
-      </li>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="Size and Crust" role="tabpanel" aria-labelledby="Size and Crust-tab">...</div>
-      <div class="tab-pane fade" id="Cheese and Sauce" role="tabpanel" aria-labelledby="Cheese and Sauce-tab">...</div>
-      <div class="tab-pane fade" id="Toppings" role="tabpanel" aria-labelledby="Toppings-tab">...</div>
-    </div>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+              <button class="nav-link active" id="Size and Crust-tab" data-bs-toggle="tab" data-bs-target="#Size and Crust" type="button" role="tab" aria-controls="Size and Crust" aria-selected="true">
+                <span class="badge rounded-pill bg-secondary">1</span>Size and Crust
+              </button>
+          </li>
+          <li class="nav-item">
+              <button class="nav-link" id="Cheese and Sauce-tab" data-bs-toggle="tab" data-bs-target="#Cheese and Sauce" type="button" role="tab" aria-controls="Cheese and Sauce" aria-selected="false">
+              <span class="badge rounded-pill bg-secondary">2</span>Cheese and Sauce</button>
+          </li>
+
+          <li class="nav-item">
+              <button class="nav-link" id="Toppings-tab" data-bs-toggle="tab" data-bs-target="#Toppings" type="button" role="tab" aria-controls="Toppings" aria-selected="false">
+              <span class="badge rounded-pill bg-secondary">3</span>Toppings</button>
+          </li>
+      </ul>
+      <form action="" method="post" >
+          <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="Size and Crust" role="tabpanel" aria-labelledby="Size and Crust-tab">
+                  <div class="card">
+                      <div class="card-header bg-primary text-white">
+                          Choose size and crust
+                      </div>
+                      <div class="card-body">
+                          <div class="card mb-3">
+                              <div class="card-header">
+                                  Hand Tossed
+                              </div>
+                              <div class="card-body">
+                                  Garlic seasoned crust with a rich, buttery taste.
+                              </div>
+                              <ul class="list-group">
+                                  <li class="list-group-item">
+                                    <input type="radio" name="crust" id="size-s">
+                                   <label for="size-s">Small (10")</label>
+                                  </li>
+                                  <li class="list-group-item">
+                                    <input type="radio" name="crust" id="size-m">
+                                    <label for="size-m">Medium (12")</label>
+                                  </li>
+                              </ul>
+                          </div>
+                          <div class="card">
+                              <div class="card-header">
+                                  Crispy Thin
+                              </div>
+                              <div class="card-body">
+                                  Thin enough for optimum crispy to crunchy ratio.
+                              </div>
+                              <ul class="list-group">
+                                  <li class="list-group-item">
+                                      <input type="radio" name="crust" id="crisp-size-m">
+                                      <label for="crisp-size-m">Medium (12")</label>
+                                  </li>
+                                  <li class="list-group-item">
+                                      <input type="radio" name="crust" id="size-l">
+                                      <label for="size-l">Large (14")</label>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                      <div class="card-footer  d-flex justify-content-end">
+                          <button class="btn btn-primary">Next Step</button>
+                      </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="Cheese and Sauce" role="tabpanel" aria-labelledby="Cheese and Sauce-tab">
+                  <div class="card">
+                      <div class="card-header bg-primary text-white">
+                        Choose Cheese and Sauce
+                      </div>
+                      <div class="card-body">
+                          <div class="card mb-3">
+                              <div class="card-header">
+                                  Cheese
+                              </div>
+                              <div class="card-body">
+                                  How Much?
+                              </div>
+                              <ul class="list-group">
+                                  <li class="list-group-item">
+                                      <input type="radio" name="crust" id="size-s">
+                                      <label for="size-s">Small (10")</label>
+                                  </li>
+                                      <li class="list-group-item">
+                                          <input type="radio" name="crust" id="size-m">
+                                          <label for="size-m">Medium (12")</label>
+                                      </li>
+                                </ul>
+                          </div>
+                          <div class="card">
+                              <div class="card-header">
+                                  Crispy Thin
+                              </div>
+                              <div class="card-body">
+                                  Thin enough for optimum crispy to crunchy ratio.
+                              </div>
+                              <ul class="list-group">
+                                  <li class="list-group-item">
+                                      <input type="radio" name="crust" id="crisp-size-m">
+                                      <label for="crisp-size-m">Medium (12")</label>
+                                  </li>
+                                  <li class="list-group-item">
+                                      <input type="radio" name="crust" id="size-l">
+                                      <label for="size-l">Large (14")</label>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                      <div class="card-footer  d-flex justify-content-end">
+                        <button class="btn btn-primary">Next Step</button>
+                      </div>
+                  </div>
+              </div>
+              <div class="tab-pane fade" id="Toppings" role="tabpanel" aria-labelledby="Toppings-tab">
+
+              </div>
+          </div>
+      </form>
   </div>
 
 
