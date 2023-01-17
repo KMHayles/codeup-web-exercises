@@ -5,19 +5,70 @@
 	<title>Jquery exercise</title>
 </head>
 <body>
-	<h1 class="codeup" id="h1-id">This is a test of my JQuery understanding</h1>
-	<p class="codeup" id="p-id">So far so good</p>
-	<ul class="" id="ul-id">this is a ul line</ul>
-	<li class="li-class" id="li-id">This is a li line</li>
-	<div class="codeup" id="div-id">this is a div line</div>
-<script src="./js/jquery-3.6.3.js"></script>
-<script>
-    // $('.codeup').css('border', '1px solid red')
-	$('#h1-id, #p-id, #div-id').css('background-color', 'yellow');
+<h1 class="codeup" id="h1-id">This is a test of my JQuery understanding</h1>
+<div class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<p class="codeup" id="p-id">So far so good</p>
+			<ul class="" id="ul-id">
+				<li class="li-class" id="li-id">This is a li line</li>
+				<li	class="li-class" id="li-id2">This is also an li line</li>
+			</ul>
+			<div class="codeup" id="div-id">this is a div line</div>
+		</div>
+	</div>
+</div>
+	<script src="./js/jquery-3.6.3.js"></script>
+	<script>
+    //first exercise.
+	// $('.codeup').css('border', '1px solid red')
+	// $('#h1-id, #p-id, #div-id').css('background-color', 'yellow');
     // $('p').css('background-color', 'yellow');
     // $('li').css('background-color', 'yellow');
     // let contents = $('#h1-id').html();
     // alert(contents)
+
+	/*---------jasons examples for exercise 2-----------*/
+	// $('#li-id').on('click', function (){
+    //     alert('this is an li-id');
+	// })
+
+	//mouseover and mouseout
+	// $('#ul-id').on('mouseover', function (){
+    //     $(this).css('background', 'yellow');
+	// })
+    // $('#ul-id').on('mouseout', function (){
+    //     $(this).css('background', '');
+    // })
+
+	//hover method
+    // $('#ul-id').hover(function (){
+    //     $(this).css('background', 'yellow');
+    // }, function (){
+    //     $(this).css('background', '');
+	// })
+
+	/*----------------exercise-------------------2 */
+    //TODO: Remove your custom jQuery code from previous exercises.
+		//commented out
+
+	//TODO: Add jQuery code that will change the background color of an h1 element when clicked.
+		$('h1').click(function (){
+            $(this).css('background', 'red')
+		});
+
+	//TODO: Make all paragraphs have a font size of 18px when they are double clicked.
+		$('p').dblclick(function (){
+            $(this).css('font-size', '18px')
+		});
+
+	//TODO: Set all li text color to red when the mouse is hovering; reset to black when it is not.
+		$('li').hover(function (){
+            $(this).css('color', 'red');
+		}, function (){
+            $(this).css('color', 'black') //same as setting an empty '', just reverts the color to black.
+        });
+
 </script>
 </body>
 </html>
