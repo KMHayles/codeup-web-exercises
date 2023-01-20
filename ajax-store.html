@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Store</title>
+</head>
+<body>
+<h1>My Tool Store</h1>
+<table id="products">
+    <thead>
+        <tr>
+            <th style="border: solid black 1px">Title</th>
+            <th style="border: solid black 1px">Quantity</th>
+            <th style="border: solid black 1px">Price</th>
+            <th style="border: solid black 1px">Categories</th>
+        </tr>
+    </thead>
+    <tbody id="insertProducts"></tbody>
+</table>
+<!------refresh button-------->
+<button class="updateBtn" style="border: #0fb784 solid 2px">Update Inventory</button>
+
+<!-----jquery scripts------------->
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<!----Ajax syntex-------------->
+<script>
+(function() {
+    "use strict";
+    // TODO: Create an AJAX GET request for the file under data/inventory.json
+    // $.get('./data/inventory.json').done(function(data) {
+    //     console.log(data);
+    // });
+
+    // TODO: Take the data from inventory.json and append it to the products table
+
+    function updateList() {
+        $.get('./data/inventory.json').done(function (data) {
+            let html = ''
+
+            for (let i = 0; i < data.length; i += 1) {
+                html += `<tr></tr>
+                <td style="border: solid black 1px">${data[i].title}</td>
+
+                <td style="border: solid black 1px">${data[i].quantity}</td>
+
+                <td style="border: solid black 1px">${data[i].price}</td>
+
+                <td style="border: solid black 1px">${data[i].categories}</td>
+                `;
+            }
+            $('#insertProducts').html(html);
+        });
+    }
+    updateList();
+
+    //---------refresh button--------------
+
+    $('.updateBtn').on('click', function(){
+        updateList()
+        });
+
+//putting all the .get data into a function and then calling that same function in the event listener will update the listed on refresh
+
+})();
+</script>
+
+</body>
+</html>
