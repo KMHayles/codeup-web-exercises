@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>First Mapbox Map</title>
+	<!-- Mapbox CSS -->
+	<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+	<!-- Custom CSS -->
+	<link href="css/resets.css" rel="stylesheet"/>
+	<style>
+        #map {
+            /* the width and height may be set to any size */
+            width: 100%;
+            flex-grow: 1;
+        }
+        header.container {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.78);
+        }
+        main.container, main.container>.row {
+            padding: 0;
+            flex-grow: 1;
+			column-gap: 0px;
+        }
+        aside.column {
+            width: 300px;
+            flex: none;
+        }
+	</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+	<header class="container">
+		<div class="row full-width">
+			<div class="column">
+				YOUR LOGO HERE
+			</div>
+			<div class="column">
+
+			</div>
+		</div>
+	</header>
+	<main class="container">
+		<div class="row full-width">
+			<aside class="column">
+
+			</aside>
+			<div class="column">
+				<div id='map'></div>
+			</div>
+		</div>
+	</main>
+</div>
+
+<!-- The HTML element that serves as the Mapbox container -->
+<div id='map'></div>
+
+<!-----Keys------->
+<script src="./js/keys.js"></script>
+
+<!----Mapbox Geocoder utils------------>
+<script src="./js/mapbox-geocoder-utils.js"></script>
+
+<!-- Mapbox JS -->
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+
+<!-- Custom JS -->
+<script>
+    mapboxgl.accessToken = keys.mapbox;
+    let map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/kmhayles/cld4tjjcn001k01mwefjd9rqn',
+        zoom: 12,
+        center: [-98.601242, 29.552260,]
+    });
+
+    // popups favorite locations
+    let favorite1Popup = new mapboxgl.Popup()
+        .setHTML("<p>Flying Saucer!</p>")
+    let favorite2Popup = new mapboxgl.Popup()
+        .setHTML("<p>Yard House</p>")
+    let favorite3Popup = new mapboxgl.Popup()
+        .setHTML("<p>Yellowfish!</p>")
+
+    // let marker = new mapboxgl.Marker()
+    //     .setLngLat([-98.4916, 29.4260])
+    //     .addTo(map)
+	// 	   .setPopup(alamoPopup);
+    // let popup = new mapboxgl.Popup()
+    //     .setLngLat([-98.489615, 29.426827])
+    //     .setHTML("<p>Codeup Rocks!</p>")
+    //     .addTo(map)
+
+    // the  geocode method from mapbox-geocoder-utils.js
+    // geocode("11255 Huebner Rd #212, San Antonio, TX 78230", keys.mapbox).then(function(result) {
+    //     console.log(result);
+    //     let marker = new mapboxgl.Marker()
+    // 	.setLngLat(result)
+    //   	.addTo(map)
+    //     .setPopup(favorite1Popup);
+    // });
+	//
+    // geocode("15900 La Cantera Pkwy, San Antonio, TX 78256", keys.mapbox).then(function(result) {
+    //     console.log(result);
+    //     let marker = new mapboxgl.Marker()
+    //         .setLngLat(result)
+    //         .addTo(map)
+    //         .setPopup(favorite2Popup);
+    // });
+	//
+    // geocode("9102 Wurzbach Rd, San Antonio, TX 78240", keys.mapbox).then(function(result) {
+    //     console.log(result);
+    //     let marker = new mapboxgl.Marker()
+    //         .setLngLat(result)
+    //         .addTo(map)
+    //         .setPopup(favorite3Popup);
+    // });
+
+
+    // reverseGeocode({lng: -98.4861, lat: 29.4260}, keys.mapbox).then(function(results) {
+    //     // logs the address
+    //     console.log(results);
+	//
+    // });
+
+    //TODO: Refactor your code to display at least three of your favorite restaurants with information about each. Create an array of objects with information about each restaurant to accomplish this. Use a .forEach() loop rather than a for loop.
+
+	//array of objects for favorite place
+	const favorPlaces = [
+        {
+            name:'flying saucer',
+			type: 'brewery',
+			long: -98.57741,
+			lat: 29.54817
+
+		},
+		{
+            name: 'yard house',
+			type: 'restaurant',
+			long: -98.61066,
+			lat: 29.59297
+
+		},
+		{
+            name: 'yellowfish',
+			type: 'restaurant',
+            long: -98.56625,
+			lat:  29.52695
+
+		}
+	]
+
+	//for loop
+	favorPlaces.forEach(function(place){
+        let popup = new mapboxgl.Popup()
+            .setHTML(`<p>${place.name}</p>`);
+        let marker = new mapboxgl.Marker()
+            .setLngLat([place.long, place.lat])
+            .addTo(map)
+            .setPopup(popup);
+        console.log(place)
+	});
+
+
+
+
+
+</script>
+</body>
+</html>
