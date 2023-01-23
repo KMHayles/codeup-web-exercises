@@ -59,3 +59,7 @@ body {
 .column.col-shrink {
     flex: 0 1 auto;
 }
+
+#searchBar {
+
+}

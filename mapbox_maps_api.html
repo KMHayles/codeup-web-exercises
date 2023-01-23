@@ -5,6 +5,9 @@
 	<title>First Mapbox Map</title>
 	<!-- Mapbox CSS -->
 	<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+	<!-- bootstrap script -->
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 	<!-- Custom CSS -->
 	<link href="css/resets.css" rel="stylesheet"/>
 	<style>
@@ -33,10 +36,17 @@
 	<header class="container">
 		<div class="row full-width">
 			<div class="column">
-				YOUR LOGO HERE
+				<img >
 			</div>
-			<div class="column">
-
+			<div class="column" id="searchBar">
+				<div class="input-group">
+					<select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+						<option selected>Select me!</option>
+						<option value="1">Flying Saucer</option>
+						<option value="2">Yard House</option>
+						<option value="3">Yellow Fish</option>
+					</select>
+				</div>
 			</div>
 		</div>
 	</header>
@@ -76,7 +86,7 @@
 
     // popups favorite locations
     let favorite1Popup = new mapboxgl.Popup()
-        .setHTML("<p>Flying Saucer!</p>")
+		.setHTML("<p>Flying Saucer!</p>")
     let favorite2Popup = new mapboxgl.Popup()
         .setHTML("<p>Yard House</p>")
     let favorite3Popup = new mapboxgl.Popup()
@@ -128,22 +138,25 @@
 	//array of objects for favorite place
 	const favorPlaces = [
         {
-            name:'flying saucer',
+            name:'Flying Saucer',
 			type: 'brewery',
+			address: '11255 Huebner Rd #212, San Antonio, TX 78230',
 			long: -98.57741,
 			lat: 29.54817
 
 		},
 		{
-            name: 'yard house',
+            name: 'Yard House',
 			type: 'restaurant',
+			address: '15900 La Cantera Pkwy, San Antonio, TX 78256',
 			long: -98.61066,
 			lat: 29.59297
 
 		},
 		{
-            name: 'yellowfish',
+            name: 'Yellow Fish',
 			type: 'restaurant',
+			address: "9102 Wurzbach Rd, San Antonio, TX 78240",
             long: -98.56625,
 			lat:  29.52695
 
@@ -151,18 +164,27 @@
 	]
 
 	//for loop
-	favorPlaces.forEach(function(place){
-        let popup = new mapboxgl.Popup()
-            .setHTML(`<p>${place.name}</p>`);
-        let marker = new mapboxgl.Marker()
-            .setLngLat([place.long, place.lat])
-            .addTo(map)
-            .setPopup(popup);
-        console.log(place)
-	});
+	// favorPlaces.forEach(function(place){
+    //     let popup = new mapboxgl.Popup()
+    //         .setHTML(`<p>${place.name}</p>`);
+    //     let marker = new mapboxgl.Marker()
+    //         .setLngLat([place.long, place.lat])
+    //         .addTo(map)
+    //         .setPopup(popup);
+    //     console.log(place)
+	// });
 
-
-
+    favorPlaces.forEach(function(place){
+        geocode(place.address, keys.mapbox).then(function(result) {
+                let popup = new mapboxgl.Popup()
+					.setHTML(`<p>${place.name}</p>`)
+                let marker = new mapboxgl.Marker()
+                    .setLngLat([place.long, place.lat])
+                    .addTo(map)
+                    .setPopup(popup);
+                console.log(place)
+            });
+	})
 
 
 </script>
