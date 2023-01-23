@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Konami Code</title>
+	<script src="./js/jquery-3.6.3.js"></script>
 </head>
 <body>
 <div class="page-wrapper">
@@ -15,65 +16,30 @@
 		</div>
 	</div>
 </div>
-<script src="./js/jquery-3.6.3.js"></script>
 <script>
-"use strict";
-// working on code
+let konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+//est. the keystrokes by their numbers in an array
 
+let userInput = []
+//store the users keystrokes into an array
 
+$(document).on('keydown', function(e) {
+    userInput.push(e.keyCode);
+    if (userInput.length > 10) {
+        userInput.shift();
 
+        //https://stackoverflow.com/questions/4471582/keycode-vs-which
+		//using jquary target the dom and tells it that on keydown run this callback function.
 
-// a key map of allowed keys
-var allowedKeys = {
-    37: 'left',
-    38: 'up',
-    39: 'right',
-    40: 'down',
-    65: 'a',
-    66: 'b'
-};
-
-// the 'official' Konami Code sequence
-var konamiCode = ['up', 'up', 'down', 'down', 'left', 'right', 'left', 'right', 'b', 'a'];
-
-// a variable to remember the 'position' the user has reached so far.
-var konamiCodePosition = 0;
-
-// add keydown event listener
-document.addEventListener('keydown', function(e) {
-    // get the value of the key code from the key map
-    var key = allowedKeys[e.keyCode];
-    // get the value of the required key from the konami code
-    var requiredKey = konamiCode[konamiCodePosition];
-
-    // compare the key with the required key
-    if (key == requiredKey) {
-
-        // move to the next key in the konami code sequence
-        konamiCodePosition++;
-
-        // if the last key is reached, activate cheats
-        if (konamiCodePosition == konamiCode.length) {
-            activateCheats();
-            konamiCodePosition = 0;
-        }
-    } else {
-        konamiCodePosition = 0;
     }
+    if (userInput.toString() === konamiCode.toString()) {
+        alert('30 extra lives!');
+    } else if (userInput.length === 10 && userInput.toString() !== konamiCode.toString()) {
+        alert('sorry wrong answer bud! Now refresh and try again!');
+	}
+	//the userInput is converted to a string and compared to the konami code, if the two are the same, the alert is triggered.  If the code is wrong the second alert will trigger.  You have to refresh to try again.  If you continue to type, even after the code was correctly entered, the second alert will trigger.  This is do to the userinput.length being set to > 10.
+
 });
-
-function activateCheats() {
-    document.body.style.backgroundImage = "url('images/cheatBackground.png')";
-
-    var audio = new Audio('audio/pling.mp3');
-    audio.play();
-
-    alert("cheats activated");
-}
-});
-
-//https://stackoverflow.com/questions/31626852/how-to-add-konami-code-in-a-website-based-on-html
-
 </script>
 </body>
 </html>
