@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Weather Map</title>
+
+	<!-- Mapbox CSS -->
+	<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+
+	 <!--bootstrap script-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+	<!-- Custom CSS -->
+	<link href="./css/weatherMap.css" rel="stylesheet"/>
+
+</head>
+
+<body>
+<div class="page-wrapper">
+	<header class="container">
+		<div id="header">Weather Map</div>
+	</header>
+
+<!--Today's forecast-->
+	<div class="container">
+		<div class="row">
+			<p>
+				<a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+					Today's Forecast
+				</a>
+			</p>
+			<div class="collapse text-center" id="collapseExample">
+				<div class="card card-body" id="todaysForecast">
+					Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--Five Day forecast-->
+	<div class="container text-center">
+		<div class="row">
+			<p>
+				<a class="btn btn-primary" data-bs-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapse">
+					5 Day Forecast
+				</a>
+			</p>
+			<div class="collapse" id="collapse">
+				<div class="card card-body" id="fiveDayForecast">
+					Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--Map-->
+	<main class="container">
+		<div class="row">
+			<div class="column">
+				<div id='map'></div>
+			</div>
+		</div>
+	</main>
+</div>
+
+
+<!-----Keys------->
+<script src="./js/keys.js"></script>
+
+<!----Mapbox Geocoder utils------------>
+<script src="./js/mapbox-geocoder-utils.js"></script>
+
+<!-- Mapbox JS -->
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+
+<!--Jquery--->
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+<!--Map Box -->
+<script>
+    mapboxgl.accessToken = keys.mapbox;
+    let map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/kmhayles/cld4tjjcn001k01mwefjd9rqn',
+        zoom: 10,
+        center: [-98.500, 29.400,]
+    });
+
+</script>
+
+<!--Weather Forecast Script-->
+<script>
+(function() {
+"use strict";
+
+
+    //Ajax request for Today's weather forecast
+    const OPEN_WEATHER_APPID = keys.weatherMap
+    $.get('https://api.openweathermap.org/data/2.5/weather', {
+        lat: 29.408,
+        lon: -98.509,
+
+    appid: OPEN_WEATHER_APPID,
+        units: 'imperial'
+    }).done(function(data) {
+        const test = [data]
+        console.log(test)
+        let html = ''
+        for (let i = 0; i < test.length; i += 1) {
+            html += `
+			<p>${test[i].name}</p>
+			<p>${test[i].main.temp}</p>
+			<p>${test[i].main.feels_like}</p>
+			<p>${test[i].weather[0].description}</p>
+			`;
+        }
+        $('#todaysForecast').html(html);
+    })
+
+	// Ajax request for 5 day weather forecast in 24 hour increments
+    $.get('https://api.openweathermap.org/data/2.5/forecast', {
+        lat: 29.4252,
+        lon: -98.4916,
+        appid: OPEN_WEATHER_APPID,
+        units: 'imperial'
+    }).done(function(data) {
+        let html = ''
+        for (let i = 0; i < data.list.length; i += 8) {
+            html += `
+			<p>${data.list[i].main.temp}</p>
+			`;
+            console.log(data.list[i].main.temp)
+        }
+        $('#fiveDayForecast').html(html);
+    })
+		//
+        // .fail(function(jqXhr, status, error) {
+        //     console.log(jqXhr);
+        //     console.log(status);
+        //     console.log(error);
+        // });
+})();
+</script>
+
+</body>
+</html>
+
+
+<!--TODO: Create a new HTML file called weather_map.html.-->
+<!--done-->
+<!--TODO: As you complete each step, commit your changes and push them to GitHub.-->
+<!--TODO: Using HTML, CSS, jQuery, AJAX, and the OpenWeatherMap API, start by showing the current conditions for city you live in on your page.-->
+<!--TODO: Update your layout and AJAX request(s) to display a five day forecast for the city you live in that looks like the screenshot below.-->
+<!--TODO: If you want to add the icons the URLs for OpenWeatherMap's icons are formatted like: http://openweathermap.org/img/w/[icon].png where [icon] comes from the API response.-->
+<!--TODO: Refer to your Mapbox API exercise. Recreate the map below your 5 day forecast. Read through the documentation for the Mapbox API and figure out how to allow the user to drop a pin on any place on the map. Once the user drops a pin, grab its coordinates and feed those into your OpenWeatherMap API. Update the five-day forecast with the information from those coordinates (you should also get rid of your input boxes at this point).-->
+<!--TODO: Add a Mapbox text input to search by location and have the forecast update when a new location is searched.-->
