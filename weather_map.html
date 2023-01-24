@@ -13,14 +13,20 @@
 
 	<!-- Custom CSS -->
 	<link href="./css/weatherMap.css" rel="stylesheet"/>
-
 </head>
 
 <body>
 <div class="page-wrapper">
-	<header class="container">
-		<div id="header">Weather Map</div>
-	</header>
+<!--NavBar-->
+	<nav class="navbar bg-body-tertiary">
+		<div class="container">
+			<a class="navbar-brand">Weather Map</a>
+			<form method="post" class="d-flex justify-content-center h-100" role="search">
+				<input class="search_input" type="text" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success" type="submit">Search</button>
+			</form>
+		</div>
+	</nav>
 
 <!--Today's forecast-->
 	<div class="container">
@@ -30,26 +36,22 @@
 					Today's Forecast
 				</a>
 			</p>
-			<div class="collapse text-center" id="collapseExample">
-				<div class="card card-body" id="todaysForecast">
-					Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-				</div>
-			</div>
+			<div class="collapse card card-body text-center" id="todaysForecast"></div>
 		</div>
 	</div>
 
 <!--Five Day forecast-->
-	<div class="container text-center">
+	<div class="container">
 		<div class="row">
-			<p>
+			<p id="5DayForecast">
 				<a class="btn btn-primary" data-bs-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapse">
 					5 Day Forecast
 				</a>
 			</p>
-			<div class="collapse" id="collapse">
-				<div class="card card-body" id="fiveDayForecast">
-					Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-				</div>
+			<div class="collapse text-center" id="collapse">
+					<div class="row" data-forecast>
+
+					</div>
 			</div>
 		</div>
 	</div>
@@ -79,13 +81,27 @@
 
 <!--Map Box -->
 <script>
+
+
+
     mapboxgl.accessToken = keys.mapbox;
     let map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/kmhayles/cld4tjjcn001k01mwefjd9rqn',
-        zoom: 10,
+        zoom: 5,
         center: [-98.500, 29.400,]
     });
+
+    geocode("San Antonio, TX 78205", keys.mapbox).then(function(result) {
+        // console.log(result);
+        let marker = new mapboxgl.Marker()
+    	.setLngLat(result)
+      	.addTo(map)
+        .setPopup(favorite1Popup);
+    });
+
+    let favorite1Popup = new mapboxgl.Popup()
+        .setHTML("<div>San Antonio</div>")
 
 </script>
 
@@ -93,7 +109,6 @@
 <script>
 (function() {
 "use strict";
-
 
     //Ajax request for Today's weather forecast
     const OPEN_WEATHER_APPID = keys.weatherMap
@@ -105,15 +120,31 @@
         units: 'imperial'
     }).done(function(data) {
         const test = [data]
-        console.log(test)
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+            "July", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
         let html = ''
+        console.log(test)
         for (let i = 0; i < test.length; i += 1) {
-            html += `
-			<p>${test[i].name}</p>
-			<p>${test[i].main.temp}</p>
-			<p>${test[i].main.feels_like}</p>
-			<p>${test[i].weather[0].description}</p>
-			`;
+            //time format
+            let time = test[i].dt;
+            time = time * 1000;
+            let dateObject = new Date(time);
+            let month = monthNames[dateObject.getMonth()];
+            let formattedTime = `${month} ${dateObject.getDate()}`;
+            //temp format
+            let temp = test[i].main.temp;
+            temp = Math.round(temp);
+            //feels like format
+            let feelsLike = test[i].main.feels_like;
+            feelsLike = Math.round(feelsLike);
+				html += `
+					<p>${test[i].name}</p>
+					<p>${formattedTime}</p>
+					<p>Temp <strong>${temp} &#8457</strong></p>
+					<p>Feels like <strong>${feelsLike} &#8457</strong></p>
+					<p>${test[i].weather[0].description}</p>
+				`;
         }
         $('#todaysForecast').html(html);
     })
@@ -125,21 +156,35 @@
         appid: OPEN_WEATHER_APPID,
         units: 'imperial'
     }).done(function(data) {
-        let html = ''
+        console.log(data)
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+            "July", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
         for (let i = 0; i < data.list.length; i += 8) {
-            html += `
-			<p>${data.list[i].main.temp}</p>
-			`;
-            console.log(data.list[i].main.temp)
+            let time = data.list[i].dt;
+            time = time * 1000;
+			let dateObject = new Date(time);
+			let month = monthNames[dateObject.getMonth()];
+            let formattedTime = `${month} ${dateObject.getDate()}`;
+			let temp = data.list[i].main.temp;
+			temp = Math.round(temp);
+            let feelsLike = data.list[i].main.feels_like;
+            feelsLike = Math.round(feelsLike);
+            let html = `
+				<div class="col" style="padding: 0;">
+					<div class="d-inline-flex card card-body" style="padding: 1px;">
+						<p>${data.city.name}</p>
+						<p>${formattedTime}</p>
+						<p>Temp <strong>${temp} &#8457</strong></p>
+						<p>Feels like <strong>${feelsLike} &#8457</strong></p>
+						<p>${data.list[i].weather[0].description}</p>
+					</div>
+				</div>
+				`;
+			$('[data-forecast]').append(html)
         }
-        $('#fiveDayForecast').html(html);
-    })
-		//
-        // .fail(function(jqXhr, status, error) {
-        //     console.log(jqXhr);
-        //     console.log(status);
-        //     console.log(error);
-        // });
+    });
+
 })();
 </script>
 
