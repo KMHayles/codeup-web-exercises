@@ -22,19 +22,13 @@
 	<nav class="navbar bg-body-tertiary">
 		<div class="container">
 			<a class="navbar-brand">Weather Map</a>
+				<p id="location"></p>
 			<form method="post" class="d-flex justify-content-center h-100" role="search" id="location-search">
 				<input class="search_input" type="text" placeholder="Search" aria-label="Search" id="location-input">
 				<button class="btn btn-outline-success" type="button">Search</button>
 			</form>
 		</div>
 	</nav>
-
-<!--
-	-use the geocode to console.log the lat/long of what is being search.
-	-instead on console.log the lat/long, the search will call the weather API and console.log the weather.
-	-the search should update the weather panels in the DOM and set the map center to the lat and long.
-	-use the geocode to get the long/lat and call the weather API with the long/lat.
-	-->
 
 <!--Today's forecast-->
 	<div class="container">
@@ -92,44 +86,41 @@
 // (function() {
 "use strict";
 
+//**************Mapbox API********************//
 
-//mapbox
-
-    mapboxgl.accessToken = keys.mapbox;
-    let map = new mapboxgl.Map({
+	mapboxgl.accessToken = keys.mapbox;
+	const coordinates = document.querySelector('coordinates');
+	const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/kmhayles/cld4tjjcn001k01mwefjd9rqn',
         zoom: 5,
         center: [-98.500, 29.400,]
-    });
+	});
 
-    geocode("San Antonio, TX 78205", keys.mapbox).then(function(result) {
-        // console.log(result);
-        const coordinates = document.getElementById('coordinates');
-        let marker = new mapboxgl.Marker()
-    	.setLngLat(result)
-      	.addTo(map)
-        .setPopup(sanAntonio);
-    });
+	geocode("San Antonio, TX 78205", keys.mapbox).then(function(result) {
+		console.log(result);
+		const coordinates = document.getElementById('coordinates');
+		let marker = new mapboxgl.Marker({draggable: true})
+			.setLngLat(result)
+			.addTo(map)
 
-    let sanAntonio = new mapboxgl.Popup()
-        .setHTML("<div>San Antonio</div>")
+	});
 
 	const marker = new mapboxgl.Marker({
 		draggable: true
 	})
-		.setLngLat([0, 0])
-		.addTo(map);
 
 	function onDragEnd() {
 		const lngLat = marker.getLngLat();
 		coordinates.style.display = 'block';
 		coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
 	}
-	marker.on('dragend', onDragEnd);
+
+    marker.on('dragend', onDragEnd); // added event listener for dragend
+
+//**************Weather API********************//
 
 
-// Ajax request for Today's weather forecast
 const OPEN_WEATHER_APPID = keys.weatherMap
 
 $(document).ready(function() {
@@ -139,15 +130,16 @@ $(document).ready(function() {
             url: "https://api.openweathermap.org/data/2.5/forecast",
             type: "GET",
             data: {
-                q: location,
-                appid: OPEN_WEATHER_APPID,
-                units: 'imperial'
-            },
+					q: location,
+					appid: OPEN_WEATHER_APPID,
+					units: 'imperial'
+            	},
             success: function (data) {
                 $('[data-forecast]').empty();
-				const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
-					"July", "Aug", "Sep", "Oct", "Nov", "Dec"
-				];
+				const monthNames = [
+                    	"Jan", "Feb", "Mar", "Apr", "May", "June",
+						"July", "Aug", "Sep", "Oct", "Nov", "Dec"
+					];
 				for (let i = 0; i < data.list.length; i += 8) {
 					let time = data.list[i].dt;
 					time = time * 1000;
@@ -171,23 +163,25 @@ $(document).ready(function() {
 					</div>
 					`;
 					$('[data-forecast]').append(html);
+                    $("#location").text(data.city.name); //updates the HTML with the current location
 				}
-                $('#todaysForecast').empty();
+                $('#todaysForecast').empty(); //removes the current weather forecast and replaces with below get request
                     $.get({
                         url: "https://api.openweathermap.org/data/2.5/weather",
                         type: "GET",
                         data: {
-                            q: location,
-                            appid: OPEN_WEATHER_APPID,
-                            units: 'imperial'
-                        	},
+								q: location,
+								appid: OPEN_WEATHER_APPID,
+								units: 'imperial'
+							},
                         success: function (data) {
 							const test = [data]
-							const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
-								"July", "Aug", "Sep", "Oct", "Nov", "Dec"
-							];
+							const monthNames = [
+                                	"Jan", "Feb", "Mar", "Apr", "May", "June",
+									"July", "Aug", "Sep", "Oct", "Nov", "Dec"
+								];
 							let html = ''
-							console.log(test)
+							// console.log(test)
 							for (let i = 0; i < test.length; i += 1) {
 								//time format
 								let time = test[i].dt;
@@ -209,7 +203,7 @@ $(document).ready(function() {
 									<p style="border: 0">${test[i].weather[0].description}</p>
 								`;
 							}
-							$('#todaysForecast').append(html);
+							$('#todaysForecast').append(html);//appends the todaysForcast
 						}
                     })
                 }
@@ -217,7 +211,7 @@ $(document).ready(function() {
         });
     });
 
-// })();
+// })(); //IIFE statement
 </script>
 
 </body>
