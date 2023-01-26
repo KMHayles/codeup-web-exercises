@@ -1,5 +1,6 @@
 body {
-    background-image: url(../photos/clouds-49520_1280.jpeg)
+    background-image: url(../photos/clouds-49520_1280.jpeg);
+    background-size: 111em;
 }
 
 .navbar{

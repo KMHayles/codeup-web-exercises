@@ -17,16 +17,24 @@
 
 <body>
 <div class="page-wrapper">
+
 <!--NavBar-->
 	<nav class="navbar bg-body-tertiary">
 		<div class="container">
 			<a class="navbar-brand">Weather Map</a>
-			<form method="post" class="d-flex justify-content-center h-100" role="search">
-				<input class="search_input" type="text" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success" type="submit">Search</button>
+			<form method="post" class="d-flex justify-content-center h-100" role="search" id="location-search">
+				<input class="search_input" type="text" placeholder="Search" aria-label="Search" id="location-input">
+				<button class="btn btn-outline-success" type="button">Search</button>
 			</form>
 		</div>
 	</nav>
+
+<!--
+	-use the geocode to console.log the lat/long of what is being search.
+	-instead on console.log the lat/long, the search will call the weather API and console.log the weather.
+	-the search should update the weather panels in the DOM and set the map center to the lat and long.
+	-use the geocode to get the long/lat and call the weather API with the long/lat.
+	-->
 
 <!--Today's forecast-->
 	<div class="container">
@@ -36,7 +44,7 @@
 					Today's Forecast
 				</a>
 			</p>
-			<div class="collapse card card-body text-center" id="todaysForecast"></div>
+			<div class="card card-body text-center" id="todaysForecast"></div>
 		</div>
 	</div>
 
@@ -50,7 +58,6 @@
 			</p>
 			<div class="collapse text-center" id="collapse">
 					<div class="row" data-forecast>
-
 					</div>
 			</div>
 		</div>
@@ -61,6 +68,7 @@
 		<div class="row">
 			<div class="column">
 				<div id='map'></div>
+				<pre id="coordinates" class="coordinates"></pre>
 			</div>
 		</div>
 	</main>
@@ -79,10 +87,13 @@
 <!--Jquery--->
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
-<!--Map Box -->
+
 <script>
+// (function() {
+"use strict";
 
 
+//mapbox
 
     mapboxgl.accessToken = keys.mapbox;
     let map = new mapboxgl.Map({
@@ -94,109 +105,120 @@
 
     geocode("San Antonio, TX 78205", keys.mapbox).then(function(result) {
         // console.log(result);
+        const coordinates = document.getElementById('coordinates');
         let marker = new mapboxgl.Marker()
     	.setLngLat(result)
       	.addTo(map)
-        .setPopup(favorite1Popup);
+        .setPopup(sanAntonio);
     });
 
-    let favorite1Popup = new mapboxgl.Popup()
+    let sanAntonio = new mapboxgl.Popup()
         .setHTML("<div>San Antonio</div>")
 
-</script>
+	const marker = new mapboxgl.Marker({
+		draggable: true
+	})
+		.setLngLat([0, 0])
+		.addTo(map);
 
-<!--Weather Forecast Script-->
-<script>
-(function() {
-"use strict";
+	function onDragEnd() {
+		const lngLat = marker.getLngLat();
+		coordinates.style.display = 'block';
+		coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
+	}
+	marker.on('dragend', onDragEnd);
 
-    //Ajax request for Today's weather forecast
-    const OPEN_WEATHER_APPID = keys.weatherMap
-    $.get('https://api.openweathermap.org/data/2.5/weather', {
-        lat: 29.408,
-        lon: -98.509,
 
-    appid: OPEN_WEATHER_APPID,
-        units: 'imperial'
-    }).done(function(data) {
-        const test = [data]
-        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
-            "July", "Aug", "Sep", "Oct", "Nov", "Dec"
-        ];
-        let html = ''
-        console.log(test)
-        for (let i = 0; i < test.length; i += 1) {
-            //time format
-            let time = test[i].dt;
-            time = time * 1000;
-            let dateObject = new Date(time);
-            let month = monthNames[dateObject.getMonth()];
-            let formattedTime = `${month} ${dateObject.getDate()}`;
-            //temp format
-            let temp = test[i].main.temp;
-            temp = Math.round(temp);
-            //feels like format
-            let feelsLike = test[i].main.feels_like;
-            feelsLike = Math.round(feelsLike);
-				html += `
-					<p>${test[i].name}</p>
-					<p>${formattedTime}</p>
-					<p>Temp <strong>${temp} &#8457</strong></p>
-					<p>Feels like <strong>${feelsLike} &#8457</strong></p>
-					<p>${test[i].weather[0].description}</p>
-				`;
-        }
-        $('#todaysForecast').html(html);
-    })
+// Ajax request for Today's weather forecast
+const OPEN_WEATHER_APPID = keys.weatherMap
 
-	// Ajax request for 5 day weather forecast in 24 hour increments
-    $.get('https://api.openweathermap.org/data/2.5/forecast', {
-        lat: 29.4252,
-        lon: -98.4916,
-        appid: OPEN_WEATHER_APPID,
-        units: 'imperial'
-    }).done(function(data) {
-        console.log(data)
-        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
-            "July", "Aug", "Sep", "Oct", "Nov", "Dec"
-        ];
-        for (let i = 0; i < data.list.length; i += 8) {
-            let time = data.list[i].dt;
-            time = time * 1000;
-			let dateObject = new Date(time);
-			let month = monthNames[dateObject.getMonth()];
-            let formattedTime = `${month} ${dateObject.getDate()}`;
-			let temp = data.list[i].main.temp;
-			temp = Math.round(temp);
-            let feelsLike = data.list[i].main.feels_like;
-            feelsLike = Math.round(feelsLike);
-            let html = `
-				<div class="col" style="padding: 0;">
-					<div class="d-inline-flex card card-body" style="padding: 1px;">
-						<p>${data.city.name}</p>
-						<p>${formattedTime}</p>
-						<p>Temp <strong>${temp} &#8457</strong></p>
-						<p>Feels like <strong>${feelsLike} &#8457</strong></p>
-						<p>${data.list[i].weather[0].description}</p>
+$(document).ready(function() {
+    $("#location-search button").click(function () {
+        let location = $(".search_input").val();
+        $.get({
+            url: "https://api.openweathermap.org/data/2.5/forecast",
+            type: "GET",
+            data: {
+                q: location,
+                appid: OPEN_WEATHER_APPID,
+                units: 'imperial'
+            },
+            success: function (data) {
+                $('[data-forecast]').empty();
+				const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+					"July", "Aug", "Sep", "Oct", "Nov", "Dec"
+				];
+				for (let i = 0; i < data.list.length; i += 8) {
+					let time = data.list[i].dt;
+					time = time * 1000;
+					let dateObject = new Date(time);
+					let month = monthNames[dateObject.getMonth()];
+					let formattedTime = `${month} ${dateObject.getDate()}`;
+					let temp = data.list[i].main.temp;
+					temp = Math.round(temp);
+					let feelsLike = data.list[i].main.feels_like;
+					feelsLike = Math.round(feelsLike);
+					let html = `
+					<div class="col" style="padding: 0;">
+						<div class="d-inline-flex card card-body" style="padding: 1px;">
+							<p>${data.city.name}</p>
+							<p>${formattedTime}</p>
+							<p>Temp <strong>${temp} &#8457</strong></p>
+							<p>Feels like <strong>${feelsLike} &#8457</strong></p>
+							<p style="border: 0">${data.list[i].weather[0].description}</p>
+							<!--inline style to remove last p border-->
+						</div>
 					</div>
-				</div>
-				`;
-			$('[data-forecast]').append(html)
-        }
+					`;
+					$('[data-forecast]').append(html);
+				}
+                $('#todaysForecast').empty();
+                    $.get({
+                        url: "https://api.openweathermap.org/data/2.5/weather",
+                        type: "GET",
+                        data: {
+                            q: location,
+                            appid: OPEN_WEATHER_APPID,
+                            units: 'imperial'
+                        	},
+                        success: function (data) {
+							const test = [data]
+							const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+								"July", "Aug", "Sep", "Oct", "Nov", "Dec"
+							];
+							let html = ''
+							console.log(test)
+							for (let i = 0; i < test.length; i += 1) {
+								//time format
+								let time = test[i].dt;
+								time = time * 1000;
+								let dateObject = new Date(time);
+								let month = monthNames[dateObject.getMonth()];
+								let formattedTime = `${month} ${dateObject.getDate()}`;
+								//temp format
+								let temp = test[i].main.temp;
+								temp = Math.round(temp);
+								//feels like format
+								let feelsLike = test[i].main.feels_like;
+								feelsLike = Math.round(feelsLike);
+								html += `
+									<p>${test[i].name}</p>
+									<p>${formattedTime}</p>
+									<p>Temp <strong>${temp} &#8457</strong></p>
+									<p>Feels like <strong>${feelsLike} &#8457</strong></p>
+									<p style="border: 0">${test[i].weather[0].description}</p>
+								`;
+							}
+							$('#todaysForecast').append(html);
+						}
+                    })
+                }
+            })
+        });
     });
 
-})();
+// })();
 </script>
 
 </body>
 </html>
-
-
-<!--TODO: Create a new HTML file called weather_map.html.-->
-<!--done-->
-<!--TODO: As you complete each step, commit your changes and push them to GitHub.-->
-<!--TODO: Using HTML, CSS, jQuery, AJAX, and the OpenWeatherMap API, start by showing the current conditions for city you live in on your page.-->
-<!--TODO: Update your layout and AJAX request(s) to display a five day forecast for the city you live in that looks like the screenshot below.-->
-<!--TODO: If you want to add the icons the URLs for OpenWeatherMap's icons are formatted like: http://openweathermap.org/img/w/[icon].png where [icon] comes from the API response.-->
-<!--TODO: Refer to your Mapbox API exercise. Recreate the map below your 5 day forecast. Read through the documentation for the Mapbox API and figure out how to allow the user to drop a pin on any place on the map. Once the user drops a pin, grab its coordinates and feed those into your OpenWeatherMap API. Update the five-day forecast with the information from those coordinates (you should also get rid of your input boxes at this point).-->
-<!--TODO: Add a Mapbox text input to search by location and have the forecast update when a new location is searched.-->
