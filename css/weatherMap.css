@@ -63,3 +63,19 @@ p {
     margin-top: 5px;
 }
 
+ .coordinates {
+     background: rgba(0, 0, 0, 0.5);
+     color: #fff;
+     position: absolute;
+     bottom: 25px;
+     left: 117px;
+     padding: 0px 0px;
+     margin: 0;
+     font-size: 11px;
+     line-height: 18px;
+     border-radius: 3px;
+     display: flex;
+     width: 20%;
+     height: 75px;
+     z-index: 1;
+ }

@@ -23,7 +23,7 @@
 		<div class="container">
 			<a class="navbar-brand">Weather Map</a>
 				<p id="location"></p>
-			<form method="post" class="d-flex justify-content-center h-100" role="search" id="location-search">
+			<form method="post" data-map class="d-flex justify-content-center h-100" role="search" id="location-search">
 				<input class="search_input" type="text" placeholder="Search" aria-label="Search" id="location-input">
 				<button class="btn btn-outline-success" type="button">Search</button>
 			</form>
@@ -62,7 +62,7 @@
 		<div class="row">
 			<div class="column">
 				<div id='map'></div>
-				<pre id="coordinates" class="coordinates"></pre>
+				<div id="coordinates" class="coordinates"></div>
 			</div>
 		</div>
 	</main>
@@ -89,46 +89,95 @@
 //**************Mapbox API********************//
 
 	mapboxgl.accessToken = keys.mapbox;
-	const coordinates = document.querySelector('coordinates');
-	const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/kmhayles/cld4tjjcn001k01mwefjd9rqn',
-        zoom: 5,
-        center: [-98.500, 29.400,]
-	});
 
-	geocode("San Antonio, TX 78205", keys.mapbox).then(function(result) {
-		console.log(result);
-		const coordinates = document.getElementById('coordinates');
-		let marker = new mapboxgl.Marker({draggable: true})
-			.setLngLat(result)
-			.addTo(map)
+        const coordinates = document.querySelector('.coordinates');
 
-	});
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/kmhayles/cld4tjjcn001k01mwefjd9rqn',
+            zoom: 5,
+            center: [-98.500, 29.400,]
+        });
 
-	const marker = new mapboxgl.Marker({
-		draggable: true
-	})
+	geocode("San Antonio, TX 78205", keys.mapbox).then(function (result) {
+            const coordinates = document.getElementById('coordinates');
 
-	function onDragEnd() {
-		const lngLat = marker.getLngLat();
-		coordinates.style.display = 'block';
-		coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
-	}
+            console.log(coordinates)
+            let marker = new mapboxgl.Marker({draggable: true})
+                .setLngLat(result)
+                .addTo(map)
 
-    marker.on('dragend', onDragEnd); // added event listener for dragend
+        });
+
+        //draggable marker
+        const marker = new mapboxgl.Marker({
+            draggable: true
+        })
+
+        function onDragEnd() {
+            const lngLat = marker.getLngLat();
+            coordinates.style.display = 'block';
+            coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
+            $('.coordinates').append(html);
+        }
+
+        marker.on('dragend', onDragEnd); // added event listener for dragend
+
 
 //**************Weather API********************//
 
 
 const OPEN_WEATHER_APPID = keys.weatherMap
 
+// let defaultLocation = //need to establish communitcation with geo API
+// $.get({
+//     url: "https://api.openweathermap.org/data/2.5/forecast",
+//     data: {
+//         q: defaultLocation,
+//         appid: OPEN_WEATHER_APPID,
+//         units: 'imperial'
+//     }.done(function (data) {
+//         $('[data-forecast]').empty();
+//         const monthNames = [
+//             "Jan", "Feb", "Mar", "Apr", "May", "June",
+//             "July", "Aug", "Sep", "Oct", "Nov", "Dec"
+//         ];
+//         for (let i = 0; i < data.list.length; i += 8) {
+//             //time format
+//             let time = data.list[i].dt;
+//             time = time * 1000;
+//             let dateObject = new Date(time);
+//             let month = monthNames[dateObject.getMonth()];
+//             let formattedTime = `${month} ${dateObject.getDate()}`;
+//             //temp format
+//             let temp = data.list[i].main.temp;
+//             temp = Math.round(temp);
+//             //feels like format
+//             let feelsLike = data.list[i].main.feels_like;
+//             feelsLike = Math.round(feelsLike);
+//             let html = `
+// 					<div class="col" style="padding: 0;">
+// 						<div class="d-inline-flex card card-body" style="padding: 1px;">
+// 							<p>${data.city.name}</p>
+// 							<p>${formattedTime}</p>
+// 							<p>Temp <strong>${temp} &#8457</strong></p>
+// 							<p>Feels like <strong>${feelsLike} &#8457</strong></p>
+// 							<p style="border: 0">${data.list[i].weather[0].description}</p>
+// 						</div>
+// 					</div>
+// 					`;
+//             $('[data-forecast]').html(html);
+//         }
+//     })
+// })
+
+
+
 $(document).ready(function() {
     $("#location-search button").click(function () {
         let location = $(".search_input").val();
         $.get({
             url: "https://api.openweathermap.org/data/2.5/forecast",
-            type: "GET",
             data: {
 					q: location,
 					appid: OPEN_WEATHER_APPID,
@@ -141,13 +190,19 @@ $(document).ready(function() {
 						"July", "Aug", "Sep", "Oct", "Nov", "Dec"
 					];
 				for (let i = 0; i < data.list.length; i += 8) {
+
+                    //time format
 					let time = data.list[i].dt;
 					time = time * 1000;
 					let dateObject = new Date(time);
 					let month = monthNames[dateObject.getMonth()];
 					let formattedTime = `${month} ${dateObject.getDate()}`;
+
+                    //temp format
 					let temp = data.list[i].main.temp;
 					temp = Math.round(temp);
+
+                    //feels like format
 					let feelsLike = data.list[i].main.feels_like;
 					feelsLike = Math.round(feelsLike);
 					let html = `
@@ -158,7 +213,6 @@ $(document).ready(function() {
 							<p>Temp <strong>${temp} &#8457</strong></p>
 							<p>Feels like <strong>${feelsLike} &#8457</strong></p>
 							<p style="border: 0">${data.list[i].weather[0].description}</p>
-							<!--inline style to remove last p border-->
 						</div>
 					</div>
 					`;
@@ -168,7 +222,6 @@ $(document).ready(function() {
                 $('#todaysForecast').empty(); //removes the current weather forecast and replaces with below get request
                     $.get({
                         url: "https://api.openweathermap.org/data/2.5/weather",
-                        type: "GET",
                         data: {
 								q: location,
 								appid: OPEN_WEATHER_APPID,
@@ -181,17 +234,21 @@ $(document).ready(function() {
 									"July", "Aug", "Sep", "Oct", "Nov", "Dec"
 								];
 							let html = ''
+
 							// console.log(test)
 							for (let i = 0; i < test.length; i += 1) {
+
 								//time format
 								let time = test[i].dt;
 								time = time * 1000;
 								let dateObject = new Date(time);
 								let month = monthNames[dateObject.getMonth()];
 								let formattedTime = `${month} ${dateObject.getDate()}`;
+
 								//temp format
 								let temp = test[i].main.temp;
 								temp = Math.round(temp);
+
 								//feels like format
 								let feelsLike = test[i].main.feels_like;
 								feelsLike = Math.round(feelsLike);
